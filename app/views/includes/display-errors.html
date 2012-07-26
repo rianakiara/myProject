@@ -1,0 +1,21 @@
+#{if flash.success}
+    <div class="alert alert-success fade in">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+	            <h4 class="alert-heading"><i class="icon-ok icon-green"></i> ${flash.success}</h4>
+	</div>
+#{/if}
+
+#{ifErrors}
+<div class="alert alert-error fade in">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            #{if flash.error}
+	            <h4 class="alert-heading"><i class="icon-warning-sign icon-red"></i> ${flash.error}</h4>
+			#{/if}
+<!-- 			<br>
+            #{list items:errors, as:'error'}
+            	<ul>
+            		<li>${error}</li>
+            	</ul>	
+            #{/list} -->
+</div>
+#{/ifErrors}

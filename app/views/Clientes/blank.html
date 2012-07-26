@@ -1,0 +1,72 @@
+#{extends 'main.html' /}
+#{set title:'Cadastra cliente' /}
+
+<script type="text/javascript">
+$(document).ready(function() {
+   $("#telefone").mask("(99) 9999-9999");
+   $("#cpf").mask("999.999.999-99");
+   $("#dataNasc").mask("99/99/9999");
+});
+</script>
+
+<div id="container">
+#{form @Clientes.save(), enctype:'multipart/form-data'}
+	<div class="span12">
+		#{include 'includes/display-errors.html' /}
+		   		<fieldset>
+		            	<div class="controls docs-input-sizes">
+			         		<h1>Novo Cliente</h1><br/>
+		         			
+		         			<div class="control-group ${errors?.forKey('cliente.nome') ? 'error' : ''}">
+							    	<div class="controls">
+			              				<input id="cliente.nome" class="input-xlarge" name="cliente.nome" type="text" placeholder="Nome" value="${cliente?.nome}">
+			              				<span class="help-inline">#{error 'cliente.nome'/}</span>
+			              			</div>
+		              		</div>
+		              		
+		              		<div class="control-group ${errors?.forKey('cliente.email') ? 'error' : ''}">
+							    	<div class="controls">
+			              				<input id="cliente.email" class="input-xlarge" name="cliente.email" type="text" placeholder="Email" value="${cliente?.email}">
+							  			<span class="help-inline">#{error 'cliente.email'/}</span>		              			
+			              			</div>
+		              		</div>
+		                   
+							<div class="control-group ${errors?.forKey('cliente.endereco') ? 'error' : ''}">		              		
+							    	<div class="controls">
+			              				<input id="cliente.endereco" class="input-xlarge" name="cliente.endereco" type="text" placeholder="Endereco" value="${cliente?.endereco}">
+							  			<span class="help-inline">#{error 'cliente.endereco'/}</span>
+									</div>
+		                   </div>
+
+		                    <div class="control-group ${errors?.forKey('cliente.dataNasc') ? 'error' : ''}">		              		
+							    	<div class="controls" class="campoMenor">
+			              				<input id="dataNasc" class="input-small" name="cliente.dataNasc" type="text" placeholder="Nascimento" value="${cliente?.dataNasc}">
+							  			<span class="help-inline">#{error 'cliente.dataNasc'/}</span>
+									</div>
+		                    </div>
+		              		
+		              		<div class="control-group ${errors?.forKey('cliente.telefone') ? 'error' : ''}">
+							    	<div class="controls" class="campoMenor">
+			              				<input id="telefone" class="input-small" name="cliente.telefone" type="text" placeholder="Telefone" value="${cliente?.telefone}">
+							  			<span class="help-inline">#{error 'cliente.telefone'/}</span>		              			
+			              			</div>
+		              		</div>
+		                   
+		                   <div class="control-group ${errors?.forKey('cliente.cpf') ? 'error' : ''}">		              		
+							    	<div class="controls">
+			              				<input id="cpf" class="input-small" name="cliente.cpf" type="text" placeholder="CPF" value="${cliente?.cpf}">
+							  			<span class="help-inline">#{error 'cliente.cpf'/}</span>
+									</div>
+		                   </div>
+		                   
+		                </div>
+		           	<div class="form-actions">
+		             	<a  href="@{Clientes.list()}" class="btn btn-primary"><i class="icon-remove icon-white"></i> Cancelar</a>
+		             	<button type="submit" class="btn"><i class="icon-ok"></i> Salvar</button>
+		           	</div>
+		           	
+		       	</fieldset>
+	</div>
+
+#{/form}
+</div>

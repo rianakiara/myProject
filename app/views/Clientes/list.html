@@ -1,0 +1,54 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+
+<div id="container">
+
+	<!-- Formulário de Busca de Cliente -->
+	<div class="row">
+	#{include 'includes/display-errors.html' /}
+              <div>
+				#{form @Clientes.search(), enctype:'multipart/form-data', class:'well form-search'}
+					<div class="input-append">
+		            	<label class="control-label" for="appendedInputButton"><h5>Buscar: </h5></label>
+	                	<input class="span6" id="appendedInputButton" size="26" type="text" placeholder="Nome ou Email" name="text" value="${text}"><button class="btn btn-primary" type="button"><i class="icon-search icon-white"></i></button>
+	                </div>
+					<a href="@{Clientes.blank}" class="btn btn-success pull-right"><i class="icon-plus icon-white"></i> Novo Cliente</a>
+				#{/form} 
+              </div>
+    </div>
+	
+	<!-- Lista de CLientes -->
+	<div class="row">
+		<table class="table table-bordered table-striped">
+	    	<thead>
+				<h2 class="pull-center">Lista de Clientes</h2>
+	        	<tr>
+	        		<th>#</th>
+	            	<th>Cliente</th>
+	            	<th>Nascimento</th>	            	
+	            	<th>Email</th>	 
+	            	<th>Telefone</th>           	
+	            	<th>Endereço</th>
+	              	<th>Ações</th>
+	          	</tr>
+	        </thead>
+		        <tbody>
+			        #{list items:lista, as:'cliente'} 
+			        	<tr>
+			        		<td>${cliente?.id}</td>
+			            	<td>${cliente?.nome}</td>
+			            	<td>${cliente?.dataNasc.format('dd/MM/yyyy')}</td>
+			            	<td>${cliente?.email}</td>
+			            	<td>${cliente?.telefone}</td>
+			            	<td>${cliente?.endereco}</td>
+			            	<td>
+			            		<a href="@{Clientes.edit(cliente?.id)}"><button class="btn btn-primary"><i class="icon-pencil icon-white"></i> Editar</button></a>
+			    				<a href="@{Clientes.delete(cliente?.id)}"><button class=btn><i class="icon-trash"></i> Excluir</button></a>
+			            	</td>
+			        	</tr>
+					#{/list}
+		        </tbody>
+	    </table>
+	</div>
+</div>

@@ -1,0 +1,23 @@
+#{if flash.success}
+    <div class="alert alert-success fade in">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+	            <h4 class="alert-heading">${flash.success}</h4>
+	</div>
+#{/if}
+
+#{if _errors}
+<div class="alert alert-error fade in">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            #{if flash.error}
+	            <h4 class="alert-heading">${flash.error}</h4>
+			#{/if}
+			<br>
+            #{list items:_errors, as:'e'}
+            	<ul>
+            		<li>${e}</li>
+            	</ul>	
+            #{/list}
+</div>
+#{/if}
+
+*{ Para chamar essa tag utilize o ex: #{display-errors errors:errors} }*

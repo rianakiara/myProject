@@ -1,0 +1,66 @@
+#{extends 'main.html' /}
+#{set title:'Cadastra empresa' /}
+
+<script type="text/javascript">
+$(document).ready(function() {
+   $("#telefone").mask("(99) 9999-9999");
+   $("#cnpj").mask("aa.aaa.aaa/aaaa-aa");
+});
+
+</script>
+
+<div id="container">
+	#{form @Empresas.save(), enctype:'multipart/form-data'}
+		<div class="span9">
+			#{include 'includes/display-errors.html' /}
+			   		<fieldset>
+			            	<div class="controls docs-input-sizes">
+				         		<h1>Nova Empresa</h1>
+				         		<br/>
+			         			
+			         			<div class="control-group ${errors?.forKey('empresa.nome') ? 'error' : ''}">
+								    	<div class="controls">
+				              				<input id="empresa.nome" class="input-xlarge" name="empresa.nome" type="text" placeholder="Nome" value="${empresa?.nome}">
+				              				<span class="help-inline">#{error 'empresa.nome'/}</span>
+				              			</div>
+			              		</div>
+			              		
+			              		<div class="control-group ${errors?.forKey('empresa.razaoSocial') ? 'error' : ''}">
+								    	<div class="controls">
+				              				<input id="empresa.razaoSocial" class="input-xlarge" name="empresa.razaoSocial" type="text" placeholder="Razão Social" value="${empresa?.razaoSocial}">
+								  			<span class="help-inline">#{error 'empresa.razaoSocial'/}</span>		              			
+				              			</div>
+			              		</div>
+			                   
+								<div class="control-group ${errors?.forKey('empresa.cnpj') ? 'error' : ''}">		              		
+								    	<div class="controls">
+				              				<input id="empresa.cnpj" class="input-xlarge" name="empresa.cnpj" type="text" placeholder="CNPJ" value="${empresa?.cnpj}">
+								  			<span class="help-inline">#{error 'empresa.cnpj'/}</span>
+										</div>
+			                    
+			                    </div>
+	
+			                    <div class="control-group ${errors?.forKey('empresa.telefone') ? 'error' : ''}">		              		
+								    	<div class="controls">
+				              				<input id="telefone" class="input-small" name="empresa.telefone" type="text" placeholder="Telefone" value="${empresa?.telefone}">
+								  			<span class="help-inline">#{error 'empresa.telfone'/}</span>
+										</div>
+			                    </div>
+			              		
+			              		<div class="control-group ${errors?.forKey('empresa.endereco') ? 'error' : ''}">
+								    	<div class="controls">
+				              				<input id="empresa.endereco" class="input-xlarge" name="empresa.endereco" type="text" placeholder="Endereço" value="${empresa?.endereco}">
+								  			<span class="help-inline">#{error 'empresa.endereco'/}</span>		              			
+				              			</div>
+			              		</div>
+			                   
+			                </div>
+			           		<div class="form-actions">
+		             			<a  href="@{Empresas.list()}" class="btn btn-primary"><i class="icon-remove icon-white"></i> Cancelar</a>
+		             			<button type="submit" class="btn"><i class="icon-ok"></i> Salvar</button>
+		           			</div>
+			       	</fieldset>
+	</div>
+	
+	#{/form}
+</div>	
